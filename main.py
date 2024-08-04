@@ -7,7 +7,7 @@ from linked_list import LinkedList
 from merge_sort import MergeSort
 from insertion_sort import InsertionSort
 
-sys.setrecursionlimit(20000)
+sys.setrecursionlimit(40000)
 
 def measure_sort_time(sorter, sort_method):
     start_time = time.time()
@@ -15,6 +15,14 @@ def measure_sort_time(sorter, sort_method):
     end_time = time.time()
     sort_time = end_time - start_time
     print(f"Time taken to sort using {sort_method} Sort: {sort_time:.6f} seconds")
+    return sort_time
+
+def measure_reversing_time(list_to_rev):
+    start_time = time.time()
+    list_to_rev.reverse()
+    end_time = time.time()
+    sort_time = end_time - start_time
+    print(f"Time taken to reverse list: {sort_time:.6f} seconds")
     return sort_time
 
 n_values = []
@@ -46,6 +54,13 @@ for k in range(0, 20001, 1000):
     insertion_time = measure_sort_time(insertion_sorter, "insertion")
     i_times.append(insertion_time)
     insertion_list.display()
+    print("\n")
+
+    print("Reverse List")
+    list_to_rev = merge_list.copy()
+    reverse_time = measure_reversing_time(list_to_rev)
+    list_to_rev.display()
+    print("\n")
     print("\n")
 
 # Create a new figure

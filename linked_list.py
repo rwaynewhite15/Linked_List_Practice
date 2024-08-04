@@ -74,14 +74,34 @@ class LinkedList:
         # Delete the node at the position
         previous_node.next = current_node.next
         current_node = None
-    def is_sorted(self):
+    def reverse(self):
+        prev = None
         current = self.head
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.head = prev
+    def is_sorted(self):
+        if not self.head:
+            print("The Linked List is Empty")
+            return
+        current = self.head
+        is_ascending = True
+        is_descending = True
         while current and current.next:
             if current.data > current.next.data:
-                print("This Linked List is Not Sorted")
-                return 
+                is_ascending = False
+            if current.data < current.next.data:
+                is_descending = False
             current = current.next
-        print("This Linked List is Sorted")
+        if is_ascending:
+            print("This Linked List is Sorted in Ascending Order")
+        elif is_descending:
+            print("This Linked List is Sorted in Descending Order")
+        else:
+            print("This Linked List is Not Sorted")
     def display(self):
         # current_node = self.head
         # while current_node:
